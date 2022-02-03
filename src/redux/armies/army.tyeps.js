@@ -1,0 +1,4 @@
+export const ADD_ARMY_MESSAGE = 'ADD_ARMY_MESSAGE'
+export const ADD_ARMY_SUCCESS = 'ADD_ARMY_SUCCESS'
+export const ADD_ARMY_ERROR = 'ADD_ARMY_ERROR'
+ 
