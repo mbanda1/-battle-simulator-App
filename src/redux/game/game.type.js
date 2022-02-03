@@ -1,0 +1,4 @@
+
+export const GET_GAME_MESSAGE = 'GET_GAME_MESSAGE'
+export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS'
+export const GET_GAME_ERROR = 'GET_GAME_ERROR'
