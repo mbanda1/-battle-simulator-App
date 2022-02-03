@@ -30,8 +30,8 @@ export default function GameTable({ data }) {
           key={key}
           onClick={() => handleClickOpen(value)}
         >
-          {' '}
-          {key}{' '}
+          
+          {key}
         </Button>
       );
     }
@@ -49,7 +49,7 @@ export default function GameTable({ data }) {
           {armies.map((d) => {
             return (
               <li key={d._id}>
-                {d.army} --- Attack strategy : <b>{d.attack}</b>{' '}
+                {d.army} --- Attack strategy : <b>{d.attack}</b>
               </li>
             );
           })}

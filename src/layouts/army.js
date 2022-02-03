@@ -77,33 +77,33 @@ const Army = (props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             <li>
-              {' '}
-              <label>Name</label>{' '}
-              <input {...register('name', { required: true, maxLength: 30 })} />{' '}
+              
+              <label>Name</label>
+              <input {...register('name', { required: true, maxLength: 30 })} />
             </li>
             <li>
-              {' '}
-              <label>Units</label>{' '}
+              
+              <label>Units</label>
               <input
                 type='units'
                 {...register('units', { required: true, min: 80, max: 100 })}
-              />{' '}
+              />
             </li>
             <li>
-              {' '}
+              
               <Select
                 label='Battles'
                 data={battles}
                 {...register('battleId', { required: true })}
-              />{' '}
+              />
             </li>
             <li>
-              {' '}
+              
               <Select
                 label='Attack Strategy'
                 data={attack}
                 {...register('attackStrategyId', { required: true })}
-              />{' '}
+              />
             </li>
           </ul>
           <input type='submit' disabled={loading} />
