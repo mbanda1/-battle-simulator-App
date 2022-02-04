@@ -39,7 +39,7 @@ const Armies = {
  */
 export const addNewArmy = (data) => (dispatch) => {
   dispatch(addArmy());
-  const url = 'http://localhost:3100/armies/add-one';
+  const url = `$URL}/armies/add-one`;
 
   return Armies.addArmy(url, data)
     .then((res) => {

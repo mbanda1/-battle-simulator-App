@@ -5,6 +5,7 @@ import {
 } from './game.type';
 
 import axios from 'axios';
+const URL = process.env.REACT_APP_API_URL;
 
 export const getGame = () => ({
   type: GET_GAME_MESSAGE,
@@ -40,7 +41,7 @@ const Games = {
  */
 export const getGames = () => (dispatch) => {
   dispatch(getGame());
-  const url = 'http://localhost:3100/games/get-legit';
+  const url = `${URL}/games/get-legit`;
 
   return Games.getAllGames(url)
     .then((res = {}) => {

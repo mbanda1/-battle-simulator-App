@@ -73,7 +73,7 @@ const Battles = {
  */
 export const addNewBattle = (data) => (dispatch) => {
   dispatch(addBattle());
-  const url = 'http://localhost:3100/battles/add-one';
+  const url = `${URL}/battles/add-one`;
 
   return Battles.addBattle(url, data)
     .then((res) => {
@@ -95,8 +95,8 @@ export const addNewBattle = (data) => (dispatch) => {
  */
 export const getBattles = () => (dispatch) => {
   dispatch(getBattle());
-  const url = 'http://localhost:3100/battles/get-many';
-
+  const url = `${URL}/battles/get-many`;
+ 
   return Battles.getAllBattles(url)
     .then((res = {}) => {
       dispatch(getSuccessMessage(res.data));

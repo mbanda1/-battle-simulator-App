@@ -81,7 +81,7 @@ export default function AutoGridNoWrap() {
       <Paper className={classes.paper}>
         <Grid container wrap='nowrap' spacing={2}>
           <Grid item>
-            <Avatar variant='circle' className={classes.square2}>
+            <Avatar variant='circular' className={classes.square2}>
               GM
             </Avatar>
           </Grid>

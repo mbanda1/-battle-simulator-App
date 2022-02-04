@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../redux/game/game.actions';
 import { Button } from '@material-ui/core';
+import io from 'socket.io-client';
+ const ENDPOINT = process.env.REACT_APP_API_URL;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,12 +52,25 @@ const Dashboard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [socket, setSocket] = useState(null);
+  const [response, setResponse] = useState([]);
+
   useEffect(() => {
     dispatch(getGames());
+
+    const newSocket = io(ENDPOINT);
+    setSocket(newSocket);
+
+    newSocket.on("message", data => {
+      console.log(data)
+        setResponse([...response, data]);
+    });
+    
+    return () => newSocket.close();
   }, [dispatch]);
 
-  const lauchGame = () => {};
 
+//  console.log(response)
   return (
     <div className={classes.root}>
       <h4>
@@ -66,9 +81,12 @@ const Dashboard = (props) => {
       </Typography>
       <br />
       <br />
-      <Button variant='contained' color='secondary' disableElevation onClick={lauchGame}>
+      <Button variant='contained' color='secondary' disableElevation 
+      onClick={() => socket.emit('message', 'game')}
+      >
         Fire Up the GAME !
       </Button>
+
     </div>
   );
 };
