@@ -9,7 +9,7 @@ const initialState = {
 const armyReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ARMY_MESSAGE:
-      return { ...state, isAddArmyLoading: true };
+      return { ...state, isAddArmyLoading: true, isAddArmySuccess: false, isAddArmyError: false };
     case ADD_ARMY_SUCCESS:
       return { ...state, isAddArmySuccess: true, isAddArmyLoading: false };
     case ADD_ARMY_ERROR:
@@ -18,6 +18,7 @@ const armyReducer = (state = initialState, action) => {
         isAddArmyError: true,
         error: action.error,
         isAddArmyLoading: false,
+        isAddArmySuccess: false
       };
 
     default:
