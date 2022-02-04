@@ -1,7 +1,4 @@
 import {
-  ADD_GAME_MESSAGE,
-  ADD_GAME_SUCCESS,
-  ADD_GAME_ERROR,
   GET_GAME_MESSAGE,
   GET_GAME_SUCCESS,
   GET_GAME_ERROR,
@@ -58,21 +55,3 @@ export const getGames = () => (dispatch) => {
     });
 };
 
-/**
- * 
- * @param {object} data 
- * @returns 
- */
-export const lauchGame = (data) => async (dispatch) => {
-  dispatch(getGame());
-  const url = 'http://localhost:3100/games/start-game';
-
-  try {
-    // logic
-  } catch (e) {
-    dispatch(getErrorMessage('An Error Occurred!'));
-    setTimeout(() => {
-      dispatch(getErrorMessage());
-    }, 2000);
-  }
-};
