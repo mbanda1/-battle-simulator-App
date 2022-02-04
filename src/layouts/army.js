@@ -68,6 +68,7 @@ const Army = (props) => {
 
   const loading = props.army.isAddBattleLoading;
   const error = props.army.error;
+  const isAddArmySuccess = props.army.isAddArmySuccess;
 
   return (
     <div className={classes.root}>
@@ -108,6 +109,7 @@ const Army = (props) => {
           </ul>
           <input type='submit' disabled={loading} />
         </form>
+        <p>{isAddArmySuccess ? 'Success' : ''}</p>
       </Typography>
     </div>
   );
