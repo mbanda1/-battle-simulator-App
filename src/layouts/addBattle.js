@@ -7,7 +7,8 @@ export default function App({submit, loading = false, error}) {
    
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("name", { required: true, maxLength: 30 })} />
+      <label> Battle Name </label>
+       <input {...register("name", { required: true, maxLength: 30 })} />
     
       <input type="submit" />
       <h6>{error}</h6>
