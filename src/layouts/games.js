@@ -48,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 5,
   },
 }));
+
+const messageHandler = (data, participants, setParticipants) => {
+ 
+
+  setParticipants([...participants, data]);
+ 
+};
+
 const Dashboard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -55,23 +63,30 @@ const Dashboard = (props) => {
   const [socket, setSocket] = useState(null);
   const [response, setResponse] = useState([]);
 
+  const participantsRef = React.useRef(response);
+  React.useEffect(() => {
+      participantsRef.current = response;
+  });
+
   useEffect(() => {
     dispatch(getGames());
 
     const newSocket = io(ENDPOINT);
     setSocket(newSocket);
 
+    const handler = (data) => {messageHandler(data, participantsRef.current, setResponse)};
+    newSocket.on("message", handler);
+
     newSocket.on("message", data => {
-      console.log(data)
-        setResponse([...response, data]);
+      handler(data);
     });
-    
-    return () => newSocket.close();
+    return () => {
+      newSocket.off('message', handler);
+    }
+    // return () => newSocket.close();
   }, [dispatch]);
 
-
-//  console.log(response)
-  return (
+   return (
     <div className={classes.root}>
       <h4>
         QULIFIED BATTLES - <i> with atleat 3 armies</i>
@@ -86,6 +101,18 @@ const Dashboard = (props) => {
       >
         Fire Up the GAME !
       </Button>
+ 
+      <ul>
+      {response.map((d) => {
+            return (
+              <li key={d.id}>
+                {d.life === 'Alife' ? 
+                `ARMY ${d.attacker} beat army ${d.attacked} off ${d.lostUnits} in Battle ${d.battle} -----` 
+                :  `Army ${d.attacked} killed by army ${d.attacker} in Battle ${d.battle} *****`}
+              </li>
+            );
+          })}
+      </ul>
 
     </div>
   );
